@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Nova Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            animation: fadeIn 2s ease-in-out, idleAnimation 20s linear infinite paused;
+        }
+        h1 {
+            color: #FFFFFF;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideIn 1.5s ease-out;
+        }
+        .owner {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: rgba(255, 215, 0, 0.7); /* Gold color, semi-transparent */
+            font-weight: 400; /* Slimmer text */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes idleAnimation {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <img src="mural.webp" alt="Idea Nova Logo">
+    <h1>Idea Nova Data</h1>
+    <div class="owner">Founded by Martin Groh</div>
+    <script>
+        function getRandomDelay() {
+            return Math.floor(Math.random() * (11 - 3 + 1) + 3) * 1000;
+        }
+
+        function setIdleAnimation() {
+            const image = document.querySelector('img');
+            const randomDelay = getRandomDelay();
+            setTimeout(() => {
+                image.style.animation = 'idleAnimation 20s linear';
+                setTimeout(() => {
+                    image.style.animation = 'idleAnimation 20s linear paused';
+                    setIdleAnimation(); // Set the next idle animation after the current one completes
+                }, 20000); // Duration of the idle animation
+            }, randomDelay);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(setIdleAnimation, 9000); // Initial wait of 9 seconds after initial animation
+        });
+    </script>
+</body>
+</html>
