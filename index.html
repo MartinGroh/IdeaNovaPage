@@ -25,7 +25,7 @@
             height: auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
-            animation: fadeIn 2s ease-in-out, idleAnimation 20s linear infinite paused;
+            animation: fadeIn 2s ease-in-out;
         }
         h1 {
             color: #FFFFFF;
@@ -57,7 +57,7 @@
     </style>
 </head>
 <body>
-    <img src="mural.webp" alt="Idea Nova Logo">
+    <img id="logo" src="mural.webp" alt="Idea Nova Logo">
     <h1>Idea Nova Data</h1>
     <div class="owner">Founded by Martin Groh</div>
     <script>
@@ -66,12 +66,12 @@
         }
 
         function setIdleAnimation() {
-            const image = document.querySelector('img');
+            const image = document.getElementById('logo');
             const randomDelay = getRandomDelay();
             setTimeout(() => {
                 image.style.animation = 'idleAnimation 20s linear';
                 setTimeout(() => {
-                    image.style.animation = 'idleAnimation 20s linear paused';
+                    image.style.animation = 'none'; // Reset the animation
                     setIdleAnimation(); // Set the next idle animation after the current one completes
                 }, 20000); // Duration of the idle animation
             }, randomDelay);
