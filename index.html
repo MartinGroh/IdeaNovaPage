@@ -113,15 +113,17 @@
             svg.setAttribute("height", height);
 
             const nodes = [];
-            const nodeCount = window.innerWidth < 768 ? 50 : 250; // Reduced nodes on mobile
-            const maxDistance = window.innerWidth < 768 ? 100 : 200; // Reduced distance on mobile
+            const isMobile = window.innerWidth < 768;
+            const nodeCount = isMobile ? 50 : 300; // Reduced nodes on mobile
+            const maxDistance = isMobile ? 100 : 200; // Reduced distance on mobile
+            const nodeSpeed = isMobile ? 1.5 : 0.5; // Triple speed on mobile
 
             for (let i = 0; i < nodeCount; i++) {
                 const node = {
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    dx: (Math.random() - 0.5) * 0.5,
-                    dy: (Math.random() - 0.5) * 0.5
+                    dx: (Math.random() - 0.5) * nodeSpeed,
+                    dy: (Math.random() - 0.5) * nodeSpeed
                 };
                 nodes.push(node);
             }
