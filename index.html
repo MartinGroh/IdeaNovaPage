@@ -34,7 +34,8 @@
             height: auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
-            animation: fadeIn 2s ease-in-out, idleAnimation 20s linear infinite paused;
+            opacity: 0; /* Initially hidden */
+            animation: fadeIn 2s ease-in-out forwards; /* Fade-in animation */
             position: relative;
             z-index: 1;
         }
@@ -42,7 +43,9 @@
             color: #FFFFFF;
             margin-top: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: slideIn 1.5s ease-out;
+            opacity: 0; /* Initially hidden */
+            animation: fadeIn 2s ease-in-out forwards; /* Fade-in animation */
+            animation-delay: 1s; /* Delay to synchronize with image */
             position: relative;
             z-index: 1;
         }
@@ -53,17 +56,15 @@
             color: rgba(255, 215, 0, 0.7);
             font-weight: 400;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 3s ease-in-out;
+            opacity: 0; /* Initially hidden */
+            animation: fadeIn 2s ease-in-out forwards; /* Fade-in animation */
+            animation-delay: 2s; /* Delay to synchronize with image */
             position: relative;
             z-index: 1;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
         @keyframes idleAnimation {
             0%, 100% { transform: scale(1); opacity: 1; }
@@ -108,7 +109,7 @@
 
             const nodes = [];
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const nodeCount = isMobile ? 250 : 400;
+            const nodeCount = isMobile ? 150 : 400;
             const maxDistance = isMobile ? 200 : 200;
             const nodeSpeed = isMobile ? 1.5 : 0.5;
 
