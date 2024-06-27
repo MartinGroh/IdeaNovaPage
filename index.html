@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idea Nova Data</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -113,7 +113,10 @@
             svg.setAttribute("height", height);
 
             const nodes = [];
-            for (let i = 0; i < 250; i++) { // Increased number of nodes
+            const nodeCount = window.innerWidth < 768 ? 50 : 250; // Reduced nodes on mobile
+            const maxDistance = window.innerWidth < 768 ? 100 : 200; // Reduced distance on mobile
+
+            for (let i = 0; i < nodeCount; i++) {
                 const node = {
                     x: Math.random() * width,
                     y: Math.random() * height,
@@ -137,8 +140,8 @@
                         if (i !== j) {
                             const otherNode = nodes[j];
                             const distance = Math.hypot(node.x - otherNode.x, node.y - otherNode.y);
-                            if (distance < 200) { // Increased distance for more connections
-                                const opacity = 1 - distance / 200; // Adjust opacity based on distance
+                            if (distance < maxDistance) {
+                                const opacity = 1 - distance / maxDistance;
                                 const line = document.createElementNS(svgNS, 'line');
                                 line.setAttribute('x1', node.x);
                                 line.setAttribute('y1', node.y);
